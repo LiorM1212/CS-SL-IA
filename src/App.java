@@ -1,6 +1,4 @@
 import java.awt.image.BufferedImage;
-// import java.io.File;
-// import javax.imageio.ImageIO;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -17,17 +15,10 @@ public class App {
         //          OCR
         // Done     toClipBoard
         //      }
-
-
-        // Rectangle bounds = new Rectangle(200, 200, 800, 400);
-        // BufferedImage image = takeScreenshot(bounds);
-       
-        // File outputfile = new File("./src/image.png");
-        // ImageIO.write(image, "png", outputfile);
     }
 
     public static BufferedImage takeScreenshot (Rectangle bounds) throws Exception{
-        Robot robot = new Robot(); // don't want to import because Robot is only used here
+        Robot robot = new Robot();
         return robot.createScreenCapture(bounds);
     }
 

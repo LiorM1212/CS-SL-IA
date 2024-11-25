@@ -1,6 +1,3 @@
-import java.awt.image.BufferedImage;
-import java.awt.Rectangle;
-import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -10,18 +7,16 @@ public class App {
         // Plan:
         //      setup  | don't know if I need this
         //      when(ctrl+alt+C){
-        //          selectRectangle
+        // working  selectRectangle
         // Done     takeScreenshot
         //          OCR
         // Done     toClipBoard
         //      }
+
+        CaptureRectangle.captureRectangle();
     }
 
-    public static BufferedImage takeScreenshot (Rectangle bounds) throws Exception{
-        Robot robot = new Robot();
-        return robot.createScreenCapture(bounds);
-    }
-
+    // puts the inputted string into the user's clipboard
     public static void toClipboard(String str){
         Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
         StringSelection strse1 = new StringSelection(str);

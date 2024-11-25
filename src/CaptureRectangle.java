@@ -7,8 +7,11 @@ public class CaptureRectangle {
     public static Rectangle captureRectangle(){
         JFrame frame = new JFrame();
 
-        frame.setSize(500, 600);
+        frame.setSize(500, 600); //todo: set size max
         frame.setLocation(0,0); // sets at top left corner        
+
+        frame.setUndecorated(true);
+        frame.setOpacity(0.5f);
 
         frame.add(new AdjustableRectangle());
         frame.setVisible(true);

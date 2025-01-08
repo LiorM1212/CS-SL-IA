@@ -92,7 +92,7 @@ public class AdjustableRectangle extends JPanel {
     // @param p current point of mouse
     // Resize the rectangle by dragging the edge
     private void resizeRectangle(Point p) {   
-        final int minSize = 20;
+        final int minSize = 25;
         int newX = Math.max(minSize, p.x - rectangle.x);
         int newY = Math.max(minSize, p.y - rectangle.y);
 

@@ -14,6 +14,15 @@ public class CaptureRectangle {
      * a method to have the user choose the are to screenshot
      */
     public static Rectangle captureRectangle(){
+        
+        openFrame();
+
+        // return selected rectangle 
+        return null;
+    }
+
+    // a method that opens a frame in which the user will interact
+    private static void openFrame(){
         JFrame frame = new JFrame();
 
         // size of the screen
@@ -31,11 +40,8 @@ public class CaptureRectangle {
         // add an adjustable rectangle on the screen for the user to adjust
         frame.add(new AdjustableRectangle());
         frame.setVisible(true);
-
-
-        // return selected rectangle 
-        return null;
     }
+
     /* @param bounds rectangle of screen to take screenshot of
      * @return a BufferedImage of the screenshot taken
      * 

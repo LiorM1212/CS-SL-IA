@@ -25,7 +25,8 @@ public class CaptureRectangle {
 
         // set the frame to be opaque
         frame.setUndecorated(true);
-        frame.setOpacity(0.1f);
+        float opacity = .3f;
+        frame.setOpacity(opacity);
 
         // add an adjustable rectangle on the screen for the user to adjust
         frame.add(new AdjustableRectangle());

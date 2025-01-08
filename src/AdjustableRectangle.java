@@ -120,8 +120,17 @@ public class AdjustableRectangle extends JPanel {
         super.paintComponent(g);
         // without this the old rectangle will remain when painting the new one
 
+        // border around rectangle
+        int borderWidth = 3;
+        g.setColor(Color.BLACK);
+        g.fillRect(rectangle.x - borderWidth, rectangle.y - borderWidth,
+                rectangle.width + 2*borderWidth, rectangle.height + 2*borderWidth);
+
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.BLACK);
-        g2.draw(rectangle);
+        g2.setColor(Color.WHITE);
+        g2.fill(rectangle);
+
+        
+        
     } // paintComponent
 } // AdjustableRectangle

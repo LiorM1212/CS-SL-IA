@@ -18,7 +18,6 @@ public class CaptureRectangle {
 
         // size of the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        
 
         // set the frame to be the whole screen
         frame.setSize(screenSize.width, screenSize.height);
@@ -26,7 +25,7 @@ public class CaptureRectangle {
 
         // set the frame to be opaque
         frame.setUndecorated(true);
-        frame.setOpacity(0.5f);
+        frame.setOpacity(0.1f);
 
         // add an adjustable rectangle on the screen for the user to adjust
         frame.add(new AdjustableRectangle());

@@ -1,11 +1,13 @@
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 public class App {
     public static void main(String[] args) throws Exception {
         // Plan:
-        //      setup  | don't know if I need this
+        //      setup
         //      when(ctrl+alt+C){
         // working  selectRectangle
         // Done     takeScreenshot
@@ -13,7 +15,12 @@ public class App {
         // Done     toClipBoard
         //      }
 
-        CaptureRectangle.captureRectangle();
+        Rectangle screenArea = CaptureRectangle.captureRectangle();
+        BufferedImage image = CaptureRectangle.takeScreenshot(screenArea);
+
+        // put image through OCR
+
+        // toClipboard(str)
     }
 
     /*  @param str string to put onto clipboard

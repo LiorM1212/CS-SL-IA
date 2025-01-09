@@ -16,12 +16,16 @@ public class App {
         //      }
 
         Rectangle screenArea = CaptureRectangle.captureRectangle();
-        BufferedImage image = CaptureRectangle.takeScreenshot(screenArea);
 
-        // put image through OCR
-        String text = "";
+        if(screenArea != null){
+            BufferedImage image = CaptureRectangle.takeScreenshot(screenArea);
 
-         toClipboard(text);
+            // put image through OCR
+            String text = "";
+
+            toClipboard(text);
+
+        }
     }
 
     /*  @param str string to put onto clipboard

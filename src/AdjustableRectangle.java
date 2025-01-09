@@ -85,6 +85,9 @@ public class AdjustableRectangle extends JPanel {
             g2.fill(rectangle);
         } // if rectangle exists
         
-        
     } // paintComponent
+
+    public Rectangle getRectangle(){
+        return rectangle;
+    }
 } // AdjustableRectangle

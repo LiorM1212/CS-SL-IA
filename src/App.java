@@ -9,7 +9,7 @@ public class App {
         // Plan:
         //      setup
         //      when(ctrl+alt+C){
-        // working  selectRectangle
+        // Done  selectRectangle
         // Done     takeScreenshot
         //          OCR
         // Done     toClipBoard

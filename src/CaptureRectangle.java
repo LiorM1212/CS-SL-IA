@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 // a class with methods involved in selecting and capturing the area to screenshot and returning said screenshot
-// unfinished
 public class CaptureRectangle {
 
     // for the button in the captureRectangle method
@@ -97,7 +96,7 @@ public class CaptureRectangle {
 
         if (!clicked)
             return null;
-            
+
         clicked = false;
         return adjustableRectangle.getRectangle();
 

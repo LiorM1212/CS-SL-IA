@@ -8,7 +8,8 @@ import java.awt.Button;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 // a class with methods involved in selecting and capturing the area to screenshot and returning said screenshot
 // unfinished
 public class CaptureRectangle {
@@ -16,6 +17,7 @@ public class CaptureRectangle {
     // for the button in the captureRectangle method
     // needs to be a global for captureRectangle to work properly
     static boolean clicked = false;
+    static boolean done = false;
 
     /*
      * @return the rectangle of the user selected area 
@@ -47,15 +49,39 @@ public class CaptureRectangle {
         // create selection rectangle
         AdjustableRectangle adjustableRectangle = new AdjustableRectangle();
 
-        
 
         // when button pressed return rectangle
         confirmButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 clicked = true;
+                done = true;
                 frame.removeAll();
                 frame.setVisible(false);
+            }
+        });
+        
+        frame.setFocusable(true);
+
+        // listener for escape key
+        frame.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                // not needed
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    done = true;
+                    frame.removeAll();
+                    frame.setVisible(false);
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // not needed
             }
         });
 
@@ -66,9 +92,15 @@ public class CaptureRectangle {
         // wait for the confirmation to be clicked
         // a method call in the while is neccessary for it to work
         // some methods seem to work others don't
-        while(!clicked){System.out.print("");} // ugly code
+        while(!done){System.out.print("");} // ugly code
+        done = false;
+
+        if (!clicked)
+            return null;
+            
         clicked = false;
         return adjustableRectangle.getRectangle();
+
     }
 
     /* @param bounds rectangle of screen to take screenshot of

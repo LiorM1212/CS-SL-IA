@@ -19,8 +19,9 @@ public class App {
         BufferedImage image = CaptureRectangle.takeScreenshot(screenArea);
 
         // put image through OCR
+        String text = "";
 
-        // toClipboard(str)
+         toClipboard(text);
     }
 
     /*  @param str string to put onto clipboard

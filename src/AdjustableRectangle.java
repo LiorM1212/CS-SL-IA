@@ -14,56 +14,40 @@ public class AdjustableRectangle extends JPanel {
 
     // the rectangle object that is seen by the user
     private Rectangle rectangle;
-    
-    // a point representing where the user started dragging from
-    // after drag: current point of mouse minus dragStart equals change in mouse position 
-    private Point dragStart;
 
     // whether the user is currently resizing
     private boolean resizing;
 
     public AdjustableRectangle() {
-        // Initial rectangle (x, y, width, height)
-        rectangle = new Rectangle(100, 100, 200, 150); 
 
         // Mouse listener to handle mouse press/release
         addMouseListener(new MouseAdapter() {
             // when mouse is pressed find whether it is dragging or resizing the rectangle
             @Override
             public void mousePressed(MouseEvent e) {
-                // if current mouse position is within the rectangle
-                if (rectangle.contains(e.getPoint())) {
-                    if (isNearEdge(e.getPoint())) {
-                        resizing = true;
-                    } else {
-                        dragStart = e.getPoint();
-                    } // if-else
-                } // if current mouse position is within rectangle
+                // create rectangle at mouse position and start resizing
+                rectangle = new Rectangle(e.getX(),e.getY(),0,0);
+                resizing = true;
             } // mousePressed
             
             // when mouse is released reset tracking variables
             @Override
             public void mouseReleased(MouseEvent e) {
                 resizing = false;
-                dragStart = null;
             } // mouseReleased
         }); // addMouseListener for press/release of mouse 
 
-        // Mouse motion listener for moving and resizing the rectangles
+        // Mouse motion listener resizing the rectangle
         addMouseMotionListener(new MouseMotionAdapter() {
             /* when mouse is dragged,
              *    if user is resizing,
              *       resize the rectangle using current mouse position
-             *    else if user is dragging rectangle
-             *       move the rectangle using current mouse position
              */
             @Override
             public void mouseDragged(MouseEvent e) {
                 if (resizing) {
                     resizeRectangle(e.getPoint());
-                } else if (dragStart != null) {
-                    moveRectangle(e.getPoint());
-                } //if-else if
+                } // if
                 // repaint rectangle after changing it
                 repaint();
             } // mouseDragged
@@ -72,46 +56,14 @@ public class AdjustableRectangle extends JPanel {
     } // adjustableRectangle constructor method
 
     // @param p current point of mouse
-    // Check if the mouse is near the rectangle's edge for resizing
-    private boolean isNearEdge(Point p) {
-        int margin = 10; // Resize margin
-
-        // distances from the mouse position to each edge of the rectangle
-        int rightDist = Math.abs(p.x - (rectangle.x + rectangle.width)); // right side
-        int leftDist =  Math.abs(p.x - rectangle.x); // left side 
-        int topDist =  Math.abs(p.y - rectangle.y); // bottom side
-        int bottomDist = Math.abs(p.y - (rectangle.y + rectangle.height)); // top side
-
-        // if distance from any of the edges is less than the margin, the user is near the edge
-        return rightDist <= margin
-                || leftDist <= margin 
-                || topDist <= margin
-                || bottomDist <= margin;
-    }
-
-    // @param p current point of mouse
     // Resize the rectangle by dragging the edge
     private void resizeRectangle(Point p) {   
-        final int minSize = 25;
-        int newX = Math.max(minSize, p.x - rectangle.x);
-        int newY = Math.max(minSize, p.y - rectangle.y);
+        
+        int newX = p.x - rectangle.x;
+        int newY = p.y - rectangle.y;
 
         rectangle.setSize(newX, newY);
     }
-
-    // @param p current point of mouse
-    // Move the rectangle by dragging inside
-    private void moveRectangle(Point p) {
-        // current position - position at the start of dragging = change in position
-        int dx = p.x - dragStart.x;
-        int dy = p.y - dragStart.y;
-
-        // move the location of the rectangle by the calculated changes
-        rectangle.setLocation(rectangle.x + dx, rectangle.y + dy);
-        
-        // set the new starting position for dragging at the current position
-        dragStart = p;
-    } // moveRectangle
 
     // puts the rectangle on the screen
     @Override
@@ -120,16 +72,18 @@ public class AdjustableRectangle extends JPanel {
         super.paintComponent(g);
         // without this the old rectangle will remain when painting the new one
 
-        // border around rectangle
-        int borderWidth = 3;
-        g.setColor(Color.BLACK);
-        g.fillRect(rectangle.x - borderWidth, rectangle.y - borderWidth,
-                rectangle.width + 2*borderWidth, rectangle.height + 2*borderWidth);
+        // paint the rectangle only if it exists
+        if(rectangle != null){
+            // border around rectangle
+            int borderWidth = 3;
+            g.setColor(Color.BLACK);
+            g.fillRect(rectangle.x - borderWidth, rectangle.y - borderWidth,
+                    rectangle.width + 2*borderWidth, rectangle.height + 2*borderWidth);
 
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.WHITE);
-        g2.fill(rectangle);
-
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setColor(Color.WHITE);
+            g2.fill(rectangle);
+        } // if rectangle exists
         
         
     } // paintComponent

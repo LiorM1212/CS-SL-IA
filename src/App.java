@@ -42,17 +42,16 @@ public class App {
                 if (nCode >= 0) {
                     switch(wParam.intValue()) {
                         case WinUser.WM_KEYUP:
-                        case WinUser.WM_KEYDOWN:
-                        case WinUser.WM_SYSKEYUP:
+
                             if(info.vkCode == 162){
                                 pressedCtrl = false;
-                                pressedAlt = false;
                             }
                             if(info.vkCode == 164){
                                 pressedAlt = false;
                             }
+                            break;
 
-                        case WinUser.WM_SYSKEYDOWN:
+                        case WinUser.WM_KEYDOWN:
                             if (info.vkCode == 162) {
                                 pressedCtrl = true;
                             }
@@ -65,6 +64,8 @@ public class App {
                                     doImageTextToClipboard();
                                 }catch(Exception e){}
                             }
+                            break;
+                            
                     }
                 }
 

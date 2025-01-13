@@ -29,6 +29,7 @@ public class App {
 
     // detects if Ctrl + Alt + C is pressed in that order
     // if detected it calls doImageTextToClipboard
+    // adapted from https://github.com/java-native-access/jna/blob/master/contrib/w32windowhooks/com/sun/jna/contrib/demo/WindowHooks.java
     public static void main(String[] args) {
 
         final User32 lib = User32.INSTANCE;

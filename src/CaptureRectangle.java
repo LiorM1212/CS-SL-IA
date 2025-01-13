@@ -89,9 +89,10 @@ public class CaptureRectangle {
         frame.setVisible(true);
 
         // wait for the confirmation to be clicked
-        // a method call in the while is neccessary for it to work
-        // some methods seem to work others don't
-        while(!done){System.out.print("");} // ugly code
+        while (!done) {
+            try { Thread.sleep(10); } catch(Exception e) { }
+        }
+
         done = false;
 
         if (!clicked)

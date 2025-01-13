@@ -45,6 +45,7 @@ public class App {
 
                             if(info.vkCode == 162){
                                 pressedCtrl = false;
+                                pressedAlt = false;
                             }
                             if(info.vkCode == 164){
                                 pressedAlt = false;
@@ -55,11 +56,14 @@ public class App {
                             if (info.vkCode == 162) {
                                 pressedCtrl = true;
                             }
+
                             if (pressedCtrl && info.vkCode == 164) {
                                 pressedAlt = true;
                             }
 
                             if(pressedCtrl && pressedAlt && info.vkCode == 67){
+                                pressedCtrl = false;
+                                pressedAlt = false;
                                 try{
                                     doImageTextToClipboard();
                                 }catch(Exception e){}
